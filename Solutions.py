@@ -11,3 +11,16 @@ class Solution:
                 nums[x], x = -1, nums[x]
             ans = max(count,ans)
         return ans
+
+#944- Delete Columns to make sorted
+class Solution:
+    def minDeletionSize(self, strs: List[str]) -> int:
+        ans = 0
+        for i in range(len(strs[0])):
+            cur = ""
+            for j in range(len(strs)):
+                cur += strs[j][i]
+            l = list(cur)
+            if l != sorted(l):
+                ans += 1
+        return ans
