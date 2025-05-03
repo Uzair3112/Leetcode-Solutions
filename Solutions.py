@@ -24,3 +24,40 @@ class Solution:
             if l != sorted(l):
                 ans += 1
         return ans
+
+
+#38 Count and Say
+class Solution:
+    def countAndSay(self, n: int) -> str:
+
+        def convertToString(lst):
+            s = ""
+            for i in range(len(lst)):
+                s += str(lst[i][0]) + str(lst[i][1])
+            return s 
+
+        def convertToArray(st):
+            if len(st) == 1:
+                new = [[1,1]]
+                return convertToString(new)
+            new = []
+            i = 0
+            while i<len(st)-1:
+                ch = st[i]
+                count = 1
+                for j in range(i+1,len(st)):
+                    if st[j] == ch:
+                        count += 1
+                    else:
+                        break
+                i += count
+                new.append([count,ch])
+            if len(st) > 1 and st[-1] != st[-2]:
+                new.append([1,st[-1]])
+                
+            return convertToString(new)
+
+        s = "1"
+        for i in range(n-1):
+            s = convertToArray(s)
+        return s
