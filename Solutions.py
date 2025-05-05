@@ -61,3 +61,19 @@ class Solution:
         for i in range(n-1):
             s = convertToArray(s)
         return s
+
+#2799. Count Complete Subarrays in an Array
+class Solution:
+    def countCompleteSubarrays(self, nums: List[int]) -> int:
+        def sub(nums):
+            subs = []
+            for i in range(len(nums)):
+                for j in range(i,len(nums)):
+                    subs.append(nums[i:j+1])
+            return subs
+        subarrays = sub(nums)
+        ans = 0
+        for i in subarrays:
+            if len(set(i)) == len(set(nums)):
+                ans += 1
+        return ans
