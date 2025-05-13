@@ -104,3 +104,18 @@ class Solution:
             ans.append(nums2[j])
             j += 1
         return ans
+
+
+#2094. Finding 3-Digit Even Numbers
+class Solution:
+    def findEvenNumbers(self, digits: List[int]) -> List[int]:
+        digits = list(map(str,digits))
+        import itertools
+        l = list(itertools.permutations(digits,3))
+        n = []
+        for i in l:
+            if i[0] == "0" or int(i[-1])%2 != 0:
+                continue
+            n.append("".join(i))
+        n = set(map(int,n))
+        return sorted(list(n))
