@@ -106,6 +106,8 @@ class Solution:
         return ans
 
 
+
+
 #2094. Finding 3-Digit Even Numbers
 class Solution:
     def findEvenNumbers(self, digits: List[int]) -> List[int]:
@@ -140,3 +142,34 @@ class Solution:
         dfs(0, 0, "")
 
         return res
+    
+
+#3356. Zero Array Transformation II
+class Solution:
+    def minZeroArray(self, nums: List[int], queries: List[List[int]]) -> int:
+        n=len(nums)
+        m=len(queries)
+        # if(nums.count(0)==n):
+        #     return 0
+        ans=0
+        currentSum=0
+        diffMap=defaultdict(int)
+        for i in range(n):
+            currentSum+=diffMap[i]
+            #print(i,currentSum)
+            
+            if(nums[i]==0 or currentSum+nums[i]<=0):
+                continue
+            
+            #ans+=1
+            while(currentSum+nums[i]>0 and ans<m):
+                l,r,val=queries[ans]
+                diffMap[l]-=val
+                diffMap[r+1]+=val
+                if(l<=i and r>=i):
+                  currentSum-=val
+                ans+=1
+            if(currentSum+nums[i]>0):
+                return -1
+            #print(i,ans,diffMap,currentSum)
+        return ans
