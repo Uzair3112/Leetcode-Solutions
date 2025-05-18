@@ -188,3 +188,14 @@ class Solution:
             else:
                 left = mid+2
         return nums[left]
+
+
+#1550. Three Consecutive Odds
+class Solution:
+    def threeConsecutiveOdds(self, arr: List[int]) -> bool:
+        t = False
+        for i in range(len(arr)-2):
+            if arr[i]%2 != 0 and arr[i+1]%2 != 0 and arr[i+2]%2 != 0:
+                t = True
+                return t
+        return t
